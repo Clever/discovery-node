@@ -1,0 +1,25 @@
+{
+  "name": "@clever/discovery",
+  "version": "0.0.2",
+  "description": "Node client library for service discovery",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Clever/discovery-node.git"
+  },
+  "author": "Clever",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Clever/discovery-node/issues"
+  },
+  "homepage": "https://github.com/Clever/discovery-node",
+  "devDependencies": {
+    "mocha": "^2.3.2"
+  },
+  "dependencies": {
+    "coffee-script": "^1.10.0"
+  }
+}
