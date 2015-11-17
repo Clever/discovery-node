@@ -13,7 +13,8 @@ publish:
     email: $$npm_drone_email
     username: $$npm_drone_username
     password: $$npm_drone_password
-    branch: master
+    when:
+      branch: master
 script:
 - nvm install 0.10.29
 - npm install npm@2.7.0 -g

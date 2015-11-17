@@ -11,7 +11,11 @@ Programmatically find services (like [discovery-go](https://github.com/Clever/di
   - disc.**port**() - returns the port
   - disc.**url**() - returns the url (\<proto\>://\<host\>:\<port\>)
 
-### import
+### install and import
+
+```bash
+npm install --save @clever/discovery
+```
 
 ```coffee
 discovery = require "discovery"

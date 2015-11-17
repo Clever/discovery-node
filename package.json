@@ -1,6 +1,6 @@
 {
   "name": "@clever/discovery",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node client library for service discovery",
   "main": "index.js",
   "scripts": {
