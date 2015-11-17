@@ -18,7 +18,7 @@ npm install --save @clever/discovery
 ```
 
 ```coffee
-discovery = require "discovery"
+discovery = require "@clever/discovery"
 ```
 
 ### examples
