@@ -32,9 +32,9 @@ try redis_port = disc_redis.port() catch err then cb(err)
 
 ### Environment Variables
 
-This library looks up environment variables(eventually maybe not). For it to work, your environment variables need to adhere to the following convention:
+This library looks up environment variables (eventually maybe not). For it to work, your environment variables need to adhere to the following convention:
 
-SERVICE_\<SERVICE_NAME\>_\<PROTOCOL\>_\<PROTO|HOST|PORT\>
+SERVICE\_\<SERVICE_NAME\>\_\<PROTOCOL\>\_\<PROTO|HOST|PORT\>
 
 Here is an example using redis:
 ```bash
