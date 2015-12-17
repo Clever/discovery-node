@@ -9,6 +9,8 @@ Programmatically find services (like [discovery-go](https://github.com/Clever/di
   - disc.**proto**() - returns the service protocol
   - disc.**host**() - returns the hostname or ip
   - disc.**port**() - returns the port
+  - disc.**host_port**() - returns (\<host\>:\<port\>)
+  - disc.**proto_host**() - returns (\<proto\>://\<host\>)
   - disc.**url**() - returns the url (\<proto\>://\<host\>:\<port\>)
 
 ### install and import
