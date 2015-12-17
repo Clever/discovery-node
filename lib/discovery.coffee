@@ -18,4 +18,8 @@ module.exports = (service_name, interface_name) ->
 
   port: -> get_var(template(service_name, interface_name, "PORT"))
 
+  proto_host: -> "#{@proto()}://#{@host()}"
+
+  host_port: -> "#{@host()}:#{@port()}"
+
   url: -> "#{@proto()}://#{@host()}:#{@port()}"
