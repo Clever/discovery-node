@@ -1,6 +1,6 @@
 {
   "name": "@clever/discovery",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Node client library for service discovery",
   "main": "index.js",
   "scripts": {
@@ -18,8 +18,5 @@
   "homepage": "https://github.com/Clever/discovery-node",
   "devDependencies": {
     "mocha": "^2.3.2"
-  },
-  "dependencies": {
-    "coffee-script": "^1.10.0"
   }
 }
