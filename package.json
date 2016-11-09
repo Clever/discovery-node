@@ -1,5 +1,5 @@
 {
-  "name": "@clever/discovery",
+  "name": "clever-discovery",
   "version": "0.0.8",
   "description": "Node client library for service discovery",
   "main": "index.js",
