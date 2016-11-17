@@ -17,11 +17,11 @@ See [Service Discovery](https://github.com/Clever/infra-docs/blob/master/deploy/
 ### install and import
 
 ```bash
-npm install --save @clever/discovery
+npm install --save clever-discovery
 ```
 
 ```coffee
-discovery = require "@clever/discovery"
+discovery = require "clever-discovery"
 ```
 
 ### examples
