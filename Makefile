@@ -1,10 +1,26 @@
-# `make test` to run all the tests
-.PHONY: test
+include node.mk
+.PHONY: all test build lint
+SHELL := /bin/bash
 
-all: test
+TS_FILES := $(shell find . -name "*.ts" -not -path "./node_modules/*" -not -name "*.d.ts")
 
-clean:
-	rm -rf lib-js lib-js-cov
+all: test build
 
-test:
-	NODE_ENV=test node_modules/mocha/bin/mocha --ignore-leaks --timeout 60000 test/*.js
+format:
+	@./node_modules/.bin/prettier --write $(TS_FILES)
+
+lint:
+	@echo "Linting..."
+	@./node_modules/.bin/eslint -c .eslintrc.yml $(TS_FILES)
+	@echo "Running prettier"
+	@./node_modules/.bin/prettier -l $(TS_FILES) || \
+		(echo "**** Prettier errors in the above files! Run 'make format' to fix! ****" && false)
+
+test: lint
+	@echo "Testing..."
+	node_modules/.bin/jest
+
+build:
+	@echo "Building..."
+	@rm -rf dist
+	@./node_modules/.bin/tsc --declaration

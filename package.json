@@ -2,9 +2,24 @@
   "name": "clever-discovery",
   "version": "0.0.8",
   "description": "Node client library for service discovery",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "make test"
+    "build": "tsc --dist",
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "ts",
+      "tsx"
+    ],
+    "testRegex": "/__tests__/.+\\.ts$",
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    }
   },
   "repository": {
     "type": "git",
@@ -17,6 +32,15 @@
   },
   "homepage": "https://github.com/Clever/discovery-node",
   "devDependencies": {
-    "mocha": "^2.3.2"
+    "@types/jest": "^18.1.1",
+    "@types/node": "^10.12.0",
+    "babel-eslint": "^7.1.1",
+    "eslint": "3.14.1",
+    "eslint-config-airbnb": "^5.0.1",
+    "eslint-plugin-react": "^3.16.1",
+    "jest": "^18.1.0",
+    "prettier": "1.18.2",
+    "ts-jest": "^18.0.3",
+    "typescript": "^2.1.5"
   }
 }
