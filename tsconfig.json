@@ -6,7 +6,8 @@
         "lib": ["es2017"],
         "typeRoots": [
             "node_modules/@types", "./types"
-        ]
+        ],
+        "outDir": "./dist",
     },
     "exclude": [
         "node_modules"
