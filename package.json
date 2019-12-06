@@ -34,13 +34,15 @@
   "devDependencies": {
     "@types/jest": "^18.1.1",
     "@types/node": "^10.12.0",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
     "babel-eslint": "^7.1.1",
-    "eslint": "3.14.1",
-    "eslint-config-airbnb": "^5.0.1",
-    "eslint-plugin-react": "^3.16.1",
+    "eslint": "5.x",
+    "eslint-config-airbnb": "^6.2.0",
+    "eslint-plugin-react": "^4.2.3",
     "jest": "^18.1.0",
     "prettier": "1.18.2",
     "ts-jest": "^18.0.3",
-    "typescript": "^2.1.5"
+    "typescript": "^3.2.1"
   }
 }

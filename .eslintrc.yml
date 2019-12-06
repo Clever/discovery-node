@@ -1,9 +1,10 @@
 extends: "airbnb"
-parser: "babel-eslint"
+parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaVersion: 6
 plugins:
   - "react"
+  - "@typescript-eslint"
 env:
   jest: true
   es6: true
@@ -30,7 +31,9 @@ rules:
     }
   }]
   no-labels: [2, { allowLoop: false, allowSwitch: false }]
-  no-unused-vars: ["error", { "argsIgnorePattern": "next" }]
+  # This is handled by the "@typescript-eslint/parser"
+  no-unused-vars:
+    - off
   no-param-reassign: 0 # Add back with exceptions when https://github.com/eslint/eslint/issues/6505 is resolved
   react/sort-comp: 0 # We have this rule in tslint already and eslint doesn't know how how handle static properties
   react/jsx-no-bind: [2, {
