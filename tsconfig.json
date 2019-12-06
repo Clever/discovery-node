@@ -7,9 +7,10 @@
         "typeRoots": [
             "node_modules/@types", "./types"
         ],
-        "outDir": "./dist",
+        "outDir": "./dist"
     },
     "exclude": [
-        "node_modules"
+        "node_modules",
+        "__tests__"
     ]
 }
