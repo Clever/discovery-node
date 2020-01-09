@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Clever/discovery-node",
   "devDependencies": {
     "mocha": "^2.3.2"
+  },
+  "dependencies": {
+    "kayvee": "^3.13.0"
   }
 }
