@@ -37,4 +37,9 @@ const discovery = (service_name: string, interface_name: string) => ({
   },
 });
 
+// eslint-disable-next-line no-redeclare
+namespace discovery {
+  export type Method = keyof ReturnType<typeof discovery>;
+}
+
 export = discovery;
