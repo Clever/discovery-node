@@ -3,4 +3,6 @@ node_modules
 coverage.html
 lib-js
 lib-js-cov
+
+# build folder
 dist/
