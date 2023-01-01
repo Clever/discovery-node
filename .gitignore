@@ -6,3 +6,4 @@ lib-js-cov
 
 # build folder
 dist/
+.git/
