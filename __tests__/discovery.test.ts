@@ -16,6 +16,8 @@ const pairs = {
   SERVICE_MISSING_PORT_API_PROTO: "missingport.proto",
   SERVICE_MISSING_PORT_API_HOST: "example.com",
   SERVICE_MISSING_PROTO_AND_HOST_FOOBAR_PORT: "8000",
+  EXTERNAL_URL_CLEVER_COM: "https://clever.com:443",
+  EXTERNAL_URL_API_CLEVER_COM: "https://api.clever.com:443",
 };
 
 describe("discovery", () => {
@@ -95,6 +97,14 @@ describe("discovery", () => {
     assert.throws(() => disc.port(), expected_error);
     assert.throws(() => disc.host_port(), expected_error);
     assert.throws(() => disc.url(), expected_error);
+  });
+  it("test external url", () => {
+    const disc = discovery("clever.com");
+    assert.equal(disc.external_url(), "https://clever.com:443");
+  });
+  it("test complex external url", () => {
+    const disc = discovery("api.clever.com");
+    assert.equal(disc.external_url(), "https://api.clever.com:443");
   });
   return it("test expect error on missing two vars", () => {
     const disc = discovery("missing-proto-and-host", "foobar");

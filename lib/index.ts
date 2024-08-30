@@ -1,5 +1,17 @@
-function template(service_name: string, interface_name: string, value: string) {
+function template_service(service_name: string, interface_name?: string, value?: string) {
+  if (interface_name === undefined || interface_name === "") {
+    throw new Error("interface_name is required");
+  }
+
+  if (value === undefined || value === "") {
+    throw new Error("value is required");
+  }
+
   return `SERVICE_${service_name}_${interface_name}_${value}`;
+}
+
+function template_external(url: string) {
+  return `EXTERNAL_URL_${url.toUpperCase().replace(/\./g, "_")}`;
 }
 
 function get_var(env_var: string) {
@@ -11,17 +23,17 @@ function get_var(env_var: string) {
   return val;
 }
 
-const discovery = (service_name: string, interface_name: string) => ({
+const discovery = (service_name_or_url: string, interface_name?: string) => ({
   proto() {
-    return get_var(template(service_name, interface_name, "PROTO"));
+    return get_var(template_service(service_name_or_url, interface_name, "PROTO"));
   },
 
   host() {
-    return get_var(template(service_name, interface_name, "HOST"));
+    return get_var(template_service(service_name_or_url, interface_name, "HOST"));
   },
 
   port() {
-    return get_var(template(service_name, interface_name, "PORT"));
+    return get_var(template_service(service_name_or_url, interface_name, "PORT"));
   },
 
   proto_host() {
@@ -34,6 +46,13 @@ const discovery = (service_name: string, interface_name: string) => ({
 
   url() {
     return `${this.proto()}://${this.host()}:${this.port()}`;
+  },
+
+  external_url() {
+    if (interface_name !== undefined && interface_name !== "") {
+      throw new Error("interface_name should not be provided");
+    }
+    return get_var(template_external(service_name_or_url));
   },
 });
 
