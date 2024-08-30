@@ -5,10 +5,10 @@ function template(service_name: string, interface_name: string, value: string) {
 }
 
 function get_var(env_var: string) {
-  env_var = env_var.toUpperCase().replace(/-/g, "_");
-  const val = process.env[env_var];
+  const key = env_var.toUpperCase().replace(/-/g, "_");
+  const val = process.env[key];
   if (val == null) {
-    throw new Error(`Missing env var ${env_var}`);
+    throw new Error(`Missing env var ${key}`);
   }
   return val;
 }

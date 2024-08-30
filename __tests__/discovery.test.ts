@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import * as discovery from "../lib/index";
+import discovery from "../lib/index";
 
 const pairs = {
   SERVICE_REDIS_TCP_PROTO: "tcp",
@@ -20,12 +20,10 @@ const pairs = {
 
 describe("discovery", () => {
   beforeAll(() => {
-    const results = [];
     for (const name of Object.keys(pairs)) {
       const value = pairs[name as keyof typeof pairs];
-      results.push((process.env[name] = value));
+      process.env[name] = value;
     }
-    return results;
   });
   it("test redis tcp discovery", () => {
     const expected_proto = "tcp";
