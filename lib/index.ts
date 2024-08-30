@@ -1,3 +1,5 @@
+import { URL } from "url";
+
 function template(service_name: string, interface_name: string, value: string) {
   return `SERVICE_${service_name}_${interface_name}_${value}`;
 }
@@ -37,9 +39,14 @@ const discovery = (service_name: string, interface_name: string) => ({
   },
 });
 
-// eslint-disable-next-line no-redeclare
-namespace discovery {
-  export type Method = keyof ReturnType<typeof discovery>;
-}
+const external_url = (input_url: string) => {
+  const key = `EXTERNAL_URL_${input_url.toUpperCase().replace(".", "_")}`;
+  const val = process.env[key];
+  if (val == null) {
+    throw new Error(`Missing env var ${key}`);
+  }
+  return new URL(val).toString();
+};
 
-export = discovery;
+export default discovery;
+export { external_url };
