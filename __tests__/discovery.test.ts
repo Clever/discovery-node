@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import discovery from "../lib/index";
+import { discovery, external_url } from "../lib/index";
 
 const pairs = {
   SERVICE_REDIS_TCP_PROTO: "tcp",
@@ -16,6 +16,8 @@ const pairs = {
   SERVICE_MISSING_PORT_API_PROTO: "missingport.proto",
   SERVICE_MISSING_PORT_API_HOST: "example.com",
   SERVICE_MISSING_PROTO_AND_HOST_FOOBAR_PORT: "8000",
+  EXTERNAL_URL_CLEVER_COM: "https://clever.com:443",
+  EXTERNAL_URL_API_CLEVER_COM: "https://api.clever.com:443",
 };
 
 describe("discovery", () => {
@@ -93,6 +95,14 @@ describe("discovery", () => {
     assert.throws(() => disc.port(), expected_error);
     assert.throws(() => disc.host_port(), expected_error);
     assert.throws(() => disc.url(), expected_error);
+  });
+  it("test external url", () => {
+    // const disc = external_url("clever.com");
+    assert.equal(external_url("clever.com"), "https://clever.com:443");
+  });
+  it("test complex external url", () => {
+    // const disc = external_url("api.clever.com");
+    assert.equal(external_url("api.clever.com"), "https://api.clever.com:443");
   });
   return it("test expect error on missing two vars", () => {
     const disc = discovery("missing-proto-and-host", "foobar");

@@ -1,11 +1,13 @@
-import { URL } from "url";
+function template_service(service_name: string, interface_name: string, value: string) {
+  return `SERVICE_${service_name}_${interface_name}_${value}`.toUpperCase().replace(/-/g, "_");
+}
 
-function template(service_name: string, interface_name: string, value: string) {
-  return `SERVICE_${service_name}_${interface_name}_${value}`;
+function template_external_url(input_url: string) {
+  return `EXTERNAL_URL_${input_url.toUpperCase().replace(/\./g, "_")}`;
 }
 
 function get_var(env_var: string) {
-  const key = env_var.toUpperCase().replace(/-/g, "_");
+  const key = env_var;
   const val = process.env[key];
   if (val == null) {
     throw new Error(`Missing env var ${key}`);
@@ -15,15 +17,15 @@ function get_var(env_var: string) {
 
 const discovery = (service_name: string, interface_name: string) => ({
   proto() {
-    return get_var(template(service_name, interface_name, "PROTO"));
+    return get_var(template_service(service_name, interface_name, "PROTO"));
   },
 
   host() {
-    return get_var(template(service_name, interface_name, "HOST"));
+    return get_var(template_service(service_name, interface_name, "HOST"));
   },
 
   port() {
-    return get_var(template(service_name, interface_name, "PORT"));
+    return get_var(template_service(service_name, interface_name, "PORT"));
   },
 
   proto_host() {
@@ -40,13 +42,7 @@ const discovery = (service_name: string, interface_name: string) => ({
 });
 
 const external_url = (input_url: string) => {
-  const key = `EXTERNAL_URL_${input_url.toUpperCase().replace(".", "_")}`;
-  const val = process.env[key];
-  if (val == null) {
-    throw new Error(`Missing env var ${key}`);
-  }
-  return new URL(val).toString();
+  return get_var(template_external_url(input_url));
 };
 
-export default discovery;
-export { external_url };
+export { discovery, external_url };
