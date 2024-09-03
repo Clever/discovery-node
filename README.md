@@ -14,25 +14,29 @@ See [Service Discovery](https://clever.atlassian.net/wiki/spaces/ENG/pages/11668
   - disc.**proto_host**() - returns (\<proto\>://\<host\>)
   - disc.**url**() - returns the url (\<proto\>://\<host\>:\<port\>)
 
+- external_url(\<url\>) - returns the external url to use
+
 ### Install and import
 
 ```bash
 npm install --save clever-discovery
 ```
 
-```coffee
-discovery = require "clever-discovery"
+```node
+import { discovery, external_url } from "clever-discovery"
 ```
 
 ### Examples
 
-```coffee
+```node
 disc_gearman = discovery("gearman-admin", "http")
 try gearman_url = disc_gearman.url() catch err then cb(err)
 
 disc_systemic = discovery("systemic", "thrift")
 try systemic_host = disc_systemic.host() catch err then cb(err)
 try systemic_port = disc_systemic.port() catch err then cb(err)
+
+try clever_com_url = external_url("clever.com") catch err then cb(err)
 ```
 
 To see what interfaces a Clever service exposes, check its launch yaml. You should see one or more exposes listed, and the `name` of the expose is used as the `interface` value in the discovery client.

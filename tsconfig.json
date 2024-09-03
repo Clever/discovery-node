@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
+        "module": "NodeNext",
+        "target": "ESNext",
         "strict": true,
-        "lib": ["es2017"],
+        "lib": ["ESNext"],
         "typeRoots": [
             "node_modules/@types", "./types"
         ],

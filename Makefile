@@ -1,6 +1,8 @@
 include node.mk
 .PHONY: all test build lint
 SHELL := /bin/bash
+NODE_VERSION := "v18"
+$(eval $(call node-version-check,$(NODE_VERSION)))
 
 TS_FILES := $(shell find . -name "*.ts" -not -path "./node_modules/*" -not -name "*.d.ts")
 
@@ -11,7 +13,7 @@ format:
 
 lint:
 	@echo "Linting..."
-	@./node_modules/.bin/eslint -c .eslintrc.yml $(TS_FILES)
+	@npx eslint $(TS_FILES)
 	@echo "Running prettier"
 	@./node_modules/.bin/prettier -l $(TS_FILES) || \
 		(echo "**** Prettier errors in the above files! Run 'make format' to fix! ****" && false)
