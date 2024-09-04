@@ -45,4 +45,7 @@ const external_url = (input_url: string) => {
   return get_var(template_external_url(input_url));
 };
 
-export { discovery, external_url };
+type discoveryMethod = keyof ReturnType<typeof discovery>;
+type externalUrlMethod = ReturnType<typeof external_url>;
+
+export { discovery, external_url, discoveryMethod, externalUrlMethod };
