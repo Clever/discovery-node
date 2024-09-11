@@ -52,7 +52,7 @@ const external = (input_url: string) => ({
 });
 
 type discoveryMethod = keyof ReturnType<typeof discovery>;
-type externalMethod = ReturnType<typeof external>;
+type externalMethod = keyof ReturnType<typeof external>;
 
 export { discovery, external, discoveryMethod, externalMethod };
 
