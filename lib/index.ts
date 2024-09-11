@@ -41,11 +41,24 @@ const discovery = (service_name: string, interface_name: string) => ({
   },
 });
 
-const external_url = (input_url: string) => {
-  return get_var(template_external_url(input_url));
-};
+const external = (input_url: string) => ({
+  url() {
+    return get_var(template_external_url(input_url));
+  },
+
+  proto_host() {
+    return trimSuffix(get_var(template_external_url(input_url)), ":443");
+  },
+});
 
 type discoveryMethod = keyof ReturnType<typeof discovery>;
-type externalUrlMethod = ReturnType<typeof external_url>;
+type externalMethod = ReturnType<typeof external>;
 
-export { discovery, external_url, discoveryMethod, externalUrlMethod };
+export { discovery, external, discoveryMethod, externalMethod };
+
+function trimSuffix(str: string, suffix: string) {
+  if (str.endsWith(suffix)) {
+    return str.slice(0, str.lastIndexOf(suffix));
+  }
+  return str;
+}
