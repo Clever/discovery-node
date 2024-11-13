@@ -1,6 +1,6 @@
 {
   "name": "clever-discovery",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Node client library for service discovery",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

@@ -42,12 +42,20 @@ const discovery = (service_name: string, interface_name: string) => ({
 });
 
 const external = (input_url: string) => ({
+  host() {
+    return trimSuffix(trimPrefix(this.url(), "https://"), ":443");
+  },
+
   url() {
     return get_var(template_external_url(input_url));
   },
 
+  host_port() {
+    return trimPrefix(this.url(), "https://");
+  },
+
   proto_host() {
-    return trimSuffix(get_var(template_external_url(input_url)), ":443");
+    return trimSuffix(this.url(), ":443");
   },
 });
 
@@ -59,6 +67,13 @@ export { discovery, external, discoveryMethod, externalMethod };
 function trimSuffix(str: string, suffix: string) {
   if (str.endsWith(suffix)) {
     return str.slice(0, str.lastIndexOf(suffix));
+  }
+  return str;
+}
+
+function trimPrefix(str: string, prefix: string) {
+  if (str.startsWith(prefix)) {
+    return str.slice(prefix.length);
   }
   return str;
 }
