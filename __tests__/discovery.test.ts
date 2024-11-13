@@ -100,11 +100,15 @@ describe("discovery", () => {
     const ex_disc = external("clever.com");
     assert.equal(ex_disc.url(), "https://clever.com:443");
     assert.equal(ex_disc.proto_host(), "https://clever.com");
+    assert.equal(ex_disc.host(), "clever.com");
+    assert.equal(ex_disc.host_port(), "clever.com:443");
   });
   it("test complex external url", () => {
     const ex_disc = external("api.clever.com");
     assert.equal(ex_disc.url(), "https://api.clever.com:443");
     assert.equal(ex_disc.proto_host(), "https://api.clever.com");
+    assert.equal(ex_disc.host(), "api.clever.com");
+    assert.equal(ex_disc.host_port(), "api.clever.com:443");
   });
   return it("test expect error on missing two vars", () => {
     const disc = discovery("missing-proto-and-host", "foobar");
