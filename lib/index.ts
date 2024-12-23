@@ -3,7 +3,7 @@ function template_service(service_name: string, interface_name: string, value: s
 }
 
 function template_external_url(input_url: string) {
-  return `EXTERNAL_URL_${input_url.toUpperCase().replace(/\./g, "_")}`;
+  return `EXTERNAL_URL_${input_url.toUpperCase().replace(/\./g, "_").replace(/-/g, "_")}`;
 }
 
 function get_var(env_var: string) {
