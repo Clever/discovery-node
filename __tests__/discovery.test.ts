@@ -18,6 +18,7 @@ const pairs = {
   SERVICE_MISSING_PROTO_AND_HOST_FOOBAR_PORT: "8000",
   EXTERNAL_URL_CLEVER_COM: "https://clever.com:443",
   EXTERNAL_URL_API_CLEVER_COM: "https://api.clever.com:443",
+  EXTERNAL_URL_DIAGNOSTICS_APP_CLEVER_COM: "https://diagnostics-app.clever.com:443",
 };
 
 describe("discovery", () => {
@@ -109,6 +110,13 @@ describe("discovery", () => {
     assert.equal(ex_disc.proto_host(), "https://api.clever.com");
     assert.equal(ex_disc.host(), "api.clever.com");
     assert.equal(ex_disc.host_port(), "api.clever.com:443");
+  });
+  it("test external url with hyphens", () => {
+    const ex_disc = external("diagnostics-app.clever.com");
+    assert.equal(ex_disc.url(), "https://diagnostics-app.clever.com:443");
+    assert.equal(ex_disc.proto_host(), "https://diagnostics-app.clever.com");
+    assert.equal(ex_disc.host(), "diagnostics-app.clever.com");
+    assert.equal(ex_disc.host_port(), "diagnostics-app.clever.com:443");
   });
   return it("test expect error on missing two vars", () => {
     const disc = discovery("missing-proto-and-host", "foobar");
