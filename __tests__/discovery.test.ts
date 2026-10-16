@@ -35,7 +35,7 @@ describe("discovery", () => {
     const expected_url = `${expected_proto}://${expected_host}:${expected_port}`;
     const expected_proto_host = `${expected_proto}://${expected_host}`;
     const expected_host_port = `${expected_host}:${expected_port}`;
-    const disc = discovery("redis", "tcp");
+    const disc = discovery("redis", "default");
     assert.equal(disc.proto(), expected_proto);
     assert.equal(disc.host(), expected_host);
     assert.equal(disc.port(), expected_port);
@@ -50,7 +50,7 @@ describe("discovery", () => {
     const expected_url = `${expected_proto}://${expected_host}:${expected_port}`;
     const expected_proto_host = `${expected_proto}://${expected_host}`;
     const expected_host_port = `${expected_host}:${expected_port}`;
-    const disc = discovery("google", "api");
+    const disc = discovery("google", "default");
     assert.equal(disc.proto(), expected_proto);
     assert.equal(disc.host(), expected_host);
     assert.equal(disc.port(), expected_port);
@@ -59,7 +59,7 @@ describe("discovery", () => {
     return assert.equal(disc.host_port(), expected_host_port);
   });
   it("test long arbitrary name with dashes", () => {
-    const disc = discovery("long-app-name", "api");
+    const disc = discovery("long-app-name", "default");
     assert.equal(disc.host(), "arbitrary");
     assert.throws(() => disc.proto(), /Missing env var SERVICE_LONG_APP_NAME_API_PROTO/);
     assert.throws(() => disc.port(), /Missing env var SERVICE_LONG_APP_NAME_API_PORT/);
@@ -68,7 +68,7 @@ describe("discovery", () => {
     assert.throws(() => disc.url(), /Missing env var SERVICE_LONG_APP_NAME_API_[\w]+/);
   });
   it("test expect error on missing proto", () => {
-    const disc = discovery("missing-proto", "api");
+    const disc = discovery("missing-proto", "default");
     assert.equal(disc.host(), "missingproto.host");
     assert.equal(disc.port(), "5000");
     assert.equal(disc.host_port(), "missingproto.host:5000");
@@ -78,7 +78,7 @@ describe("discovery", () => {
     assert.throws(() => disc.url(), expected_error);
   });
   it("test expect error on missing host", () => {
-    const disc = discovery("missing-host", "api");
+    const disc = discovery("missing-host", "default");
     assert.equal(disc.proto(), "missinghost.proto");
     assert.equal(disc.port(), "5000");
     const expected_error = /Missing env var SERVICE_MISSING_HOST_API_HOST/;
@@ -88,7 +88,7 @@ describe("discovery", () => {
     assert.throws(() => disc.url(), expected_error);
   });
   it("test expect error on missing port", () => {
-    const disc = discovery("missing-port", "api");
+    const disc = discovery("missing-port", "default");
     assert.equal(disc.proto(), "missingport.proto");
     assert.equal(disc.host(), "example.com");
     assert.equal(disc.proto_host(), "missingport.proto://example.com");
@@ -119,7 +119,7 @@ describe("discovery", () => {
     assert.equal(ex_disc.host_port(), "diagnostics-app.clever.com:443");
   });
   return it("test expect error on missing two vars", () => {
-    const disc = discovery("missing-proto-and-host", "foobar");
+    const disc = discovery("missing-proto-and-host", "default");
     assert.equal(disc.port(), "8000");
     assert.throws(
       () => disc.proto(),
