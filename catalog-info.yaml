@@ -3,9 +3,9 @@ kind: Component
 metadata:
   name: discovery-node
   description: Programmatically find services (like discovery-go, but for node)
-  owner: unknown
+  owner: eng-infra
 spec:
   type: unknown
   lifecycle: production
-  owner: unknown
+  owner: eng-infra
   system: Clever
